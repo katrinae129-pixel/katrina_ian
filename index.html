@@ -83,6 +83,19 @@
       gap: 1rem;
     }
 
+    /* Left side navigation buttons */
+    .nav-left {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* Right side dark mode toggle */
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
     .logo {
       font-weight: 700;
       font-size: 1.4rem;
@@ -91,6 +104,7 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+      margin-right: 2rem;
     }
 
     .nav-links {
@@ -213,13 +227,14 @@
       background: #059669;
     }
 
-    /* social links container */
+    /* social links container - centralized */
     .social-links {
       display: flex;
       gap: 1.2rem;
       margin-top: 1.5rem;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
     }
 
     .social-icon {
@@ -274,7 +289,7 @@
       text-align: center;
     }
 
-    .hero-content h1 {
+    .hero-content h2 {
       font-size: 2.8rem;
       font-weight: 700;
       letter-spacing: -0.03em;
@@ -444,14 +459,23 @@
       .container {
         padding: 0 1.5rem;
       }
-      .hero-content h1 {
+      .hero-content h2 {
         font-size: 2rem;
       }
       .nav-flex {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+      }
+      .nav-left {
+        flex-direction: column;
+        width: 100%;
+      }
+      .logo {
+        margin-right: 0;
+        text-align: center;
       }
       .nav-links {
+        justify-content: center;
         flex-wrap: wrap;
         gap: 1rem;
       }
@@ -467,11 +491,17 @@
 <!-- ==================== NAVIGATION ==================== -->
 <nav class="navbar">
   <div class="container nav-flex">
-
-    <div class="nav-links">
-      <a href="index.html" id="nav-home" class="active">Home</a>
-      <a href="certificates.html" id="nav-certs">Certificates</a>
-      <a href="#" id="contact-btn" class="btn-outline">Projects</a>
+    <!-- Left side: Logo + Navigation buttons -->
+    <div class="nav-left">
+      <div class="nav-links">
+        <a href="index.html" id="nav-home" class="active">Home</a>
+        <a href="certificates.html" id="nav-certs">Certificates</a>
+        <a href="#" id="projects-btn">Projects</a>
+      </div>
+    </div>
+    
+    <!-- Right side: Dark mode toggle -->
+    <div class="nav-right">
       <button id="darkModeToggle" class="dark-mode-toggle">
         <i class="fas fa-moon"></i> Dark Mode
       </button>
@@ -499,11 +529,10 @@
       
       <!-- Button Group: View Projects + Resume Download -->
       <div class="button-group">
-        
         <a href="#" id="download-resume-btn" class="btn-resume">📄 Download Resume</a>
       </div>
 
-      <!-- Social Links: LinkedIn, Instagram, Email (free text with mailto) -->
+      <!-- Social Links: LinkedIn, Instagram, Email - CENTRALIZED -->
       <div class="social-links">
         <a href="https://www.linkedin.com/in/katrina-esteban" target="_blank" class="social-icon linkedin">
           <i class="fab fa-linkedin"></i> LinkedIn
@@ -518,7 +547,59 @@
     </div>
   </div>
 
+  <!-- PROJECTS SECTION (hidden by default, shown when Projects button is clicked) -->
+  <div class="container section" id="projectsSection" style="display: none;">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <h3>Sales Dashboard · Power BI</h3>
+        <p>Interactive dashboard visualizing sales KPIs, regional performance, and predictive trends using DAX and SQL.</p>
+        <div><span class="tech-badge">Power BI</span><span class="tech-badge">SQL</span><span class="tech-badge">DAX</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">⚙️</div>
+        <h3>Invoice Automation Bot</h3>
+        <p>Python-based automation that extracts invoice data from PDFs and updates ERP system, reducing manual work by 70%.</p>
+        <div><span class="tech-badge">Python</span><span class="tech-badge">Regex</span><span class="tech-badge">OpenPyXL</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📈</div>
+        <h3>Customer Churn Analysis</h3>
+        <p>Machine learning model to predict churn using Python, with actionable insights presented via Tableau.</p>
+        <div><span class="tech-badge">Python</span><span class="tech-badge">Scikit-learn</span><span class="tech-badge">Tableau</span></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- SKILLS SECTION (hidden by default, shown when Projects button is clicked) -->
+  <div class="container section" id="skillsSection" style="display: none;">
+    <h2 class="section-title">Tech Toolbox & Skills</h2>
+    <div class="skills-flex">
+      <span class="skill-item">Python</span>
+      <span class="skill-item">SQL</span>
+      <span class="skill-item">Power BI</span>
+      <span class="skill-item">Tableau</span>
+      <span class="skill-item">Excel Advanced</span>
+      <span class="skill-item">Process Mining</span>
+      <span class="skill-item">RPA (UiPath)</span>
+      <span class="skill-item">Pandas / NumPy</span>
+      <span class="skill-item">Lean Six Sigma</span>
+    </div>
+  </div>
+</main>
+
+<!-- Contact Modal (hidden initially) -->
+<div id="contactModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000;">
+  <div style="background: var(--card-bg); max-width: 400px; margin: 2rem; padding: 2rem; border-radius: 2rem; text-align: center; color: var(--text-primary);">
+    <h3 style="margin-bottom: 0.5rem;">📬 Get in touch</h3>
+    <p style="margin-bottom: 0.5rem;">Let's connect about data, automation, or opportunities!</p>
+    <p style="margin-bottom: 1.5rem; background: var(--bg-primary); padding: 0.5rem; border-radius: 30px;">
+      <i class="fas fa-envelope"></i> katrina.esteban@example.com
+    </p>
+    <button id="closeModalBtn" style="background: #2563eb; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 30px; cursor: pointer; font-weight: 500;">Close</button>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="container">
@@ -557,6 +638,29 @@
         localStorage.setItem('darkMode', 'disabled');
       }
       updateToggleButton(isDark);
+    });
+  }
+  
+  // Projects Button - Show/Hide Projects and Skills Sections
+  const projectsBtn = document.getElementById('projects-btn');
+  const projectsSection = document.getElementById('projectsSection');
+  const skillsSection = document.getElementById('skillsSection');
+  let projectsVisible = false;
+  
+  if (projectsBtn && projectsSection && skillsSection) {
+    projectsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!projectsVisible) {
+        projectsSection.style.display = 'block';
+        skillsSection.style.display = 'block';
+        projectsVisible = true;
+        projectsBtn.classList.add('active');
+      } else {
+        projectsSection.style.display = 'none';
+        skillsSection.style.display = 'none';
+        projectsVisible = false;
+        projectsBtn.classList.remove('active');
+      }
     });
   }
   
