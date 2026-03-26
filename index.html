@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Katrina Ian Esteban · Portfolio</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for social icons (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* CSS Variables for Dark/Light Mode */
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --card-bg: #ffffff;
+      --card-border: #eef2ff;
+      --nav-bg: rgba(255,255,255,0.92);
+      --skill-bg: #ffffff;
+      --btn-outline-bg: white;
+      --hero-gradient-start: #0f172a;
+      --hero-gradient-end: #2563eb;
+    }
+
+    body.dark {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --nav-bg: rgba(30,41,59,0.92);
+      --skill-bg: #1e293b;
+      --btn-outline-bg: #1e293b;
+      --hero-gradient-start: #e2e8f0;
+      --hero-gradient-end: #60a5fa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* header / nav */
+    .navbar {
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      transition: background 0.3s ease;
+    }
+
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #2563eb;
+    }
+
+    /* Dark mode toggle button */
+    .dark-mode-toggle {
+      background: var(--btn-outline-bg);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dark-mode-toggle:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    body.dark .dark-mode-toggle:hover {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      background: var(--btn-outline-bg);
+      font-weight: 500;
+      transition: all 0.2s;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    /* buttons general */
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-color);
+    }
+
+    /* resume button specific */
+    .btn-resume {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-resume:hover {
+      background: #059669;
+    }
+
+    /* social links container */
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--card-bg);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s;
+    }
+
+    .social-icon i {
+      font-size: 1.1rem;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-2px);
+      border-color: #2563eb;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .social-icon.linkedin:hover {
+      color: #0a66c2;
+      border-color: #0a66c2;
+    }
+
+    .social-icon.instagram:hover {
+      color: #e4405f;
+      border-color: #e4405f;
+    }
+
+    .social-icon.email:hover {
+      color: #2563eb;
+      border-color: #2563eb;
+    }
+
+    /* hero section */
+    .hero {
+      padding: 2rem 0 2rem 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(to right, var(--hero-gradient-start), var(--hero-gradient-end));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tag {
+      color: #2563eb;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0.75rem auto 1.2rem auto;
+      line-height: 1.5;
+    }
+
+    /* Profile picture container - centered below name */
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0 1rem 0;
+    }
+
+    .avatar-circle {
+      background: linear-gradient(145deg, #eef2ff, #ffffff);
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+      border: 4px solid white;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark .avatar-circle {
+      background: linear-gradient(145deg, #334155, #1e293b);
+      border-color: #2563eb;
+    }
+
+    .avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* button group */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    /* projects section */
+    .section {
+      padding: 2rem 0 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      border-left: 5px solid #2563eb;
+      padding-left: 1rem;
+      color: var(--text-primary);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      border: 1px solid var(--card-border);
+      transition: all 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border-color: #cbdffc;
+    }
+
+    .project-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      margin: 0.75rem 0 1rem 0;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #1e40af;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    body.dark .tech-badge {
+      background: #2563eb20;
+      color: #60a5fa;
+    }
+
+    /* skills section */
+    .skills-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-item {
+      background: var(--skill-bg);
+      border-radius: 60px;
+      padding: 0.5rem 1.3rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      color: var(--text-primary);
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 0;
+      margin-top: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .nav-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .avatar-circle {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="navbar">
+  <div class="container nav-flex">
+
+    <div class="nav-links">
+      <a href="index.html" id="nav-home" class="active">Home</a>
+      <a href="certificates.html" id="nav-certs">Certificates</a>
+      <a href="#" id="contact-btn" class="btn-outline">Contact</a>
+      <button id="darkModeToggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i> Dark Mode
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO SECTION with Profile Picture Below Name, Buttons & Socials -->
+  <div class="container hero">
+    <div class="hero-content">
+      <div class="hero-tag"> Aspiring Data Analyst · Process Automation Enthusiast</div>
+      <h1>Katrina Ian Esteban</h1>
+      
+      <!-- Profile Picture - Now below the name -->
+      <div class="profile-container">
+        <div class="avatar-circle">
+          <img src="katprofile.jpg" alt="Katrina Ian Esteban profile picture" onerror="this.onerror=null; this.src='https://via.placeholder.com/200?text=Katrina'; this.parentElement.style.background='#eef2ff'">
+        </div>
+      </div>
+      
+      <p class="hero-desc">
+        Industrial Engineer | Data Analytics & Process Automation Enthusiast<br>
+        I turn data into insights and workflows into efficient, automated solutions. Passionate about optimizing processes and creating real-world impact through analytics and automation.
+      </p>
+      
+      <!-- Button Group: View Projects + Resume Download -->
+      <div class="button-group">
+        <a href="#projects" class="btn-primary">✨ View Projects</a>
+        <a href="certificates.html" class="btn-secondary">📜 Certificates →</a>
+        <a href="#" id="download-resume-btn" class="btn-resume">📄 Download Resume</a>
+      </div>
+
+      <!-- Social Links: LinkedIn, Instagram, Email (free text with mailto) -->
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/katrina-esteban" target="_blank" class="social-icon linkedin">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://www.instagram.com/katrina.esteban" target="_blank" class="social-icon instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="mailto:katrina.esteban@example.com" class="social-icon email">
+          <i class="fas fa-envelope"></i> katrina.esteban@example.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 Katrina Ian Esteban</p>
+  </div>
+</footer>
+
+<script>
+  // Dark Mode Toggle Functionality
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+  
+  // Check for saved dark mode preference
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark');
+    updateToggleButton(true);
+  }
+  
+  function updateToggleButton(isDark) {
+    if (darkModeToggle) {
+      if (isDark) {
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+      } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+      }
+    }
+  }
+  
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      if (isDark) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+      updateToggleButton(isDark);
+    });
+  }
+  
+  // Contact Modal Logic
+  const contactBtn = document.getElementById('contact-btn');
+  const modal = document.getElementById('contactModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  
+  if (contactBtn && modal && closeModalBtn) {
+    contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+    closeModalBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  }
+  
+  // Resume Download Functionality
+  const downloadBtn = document.getElementById('download-resume-btn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const resumeContent = `KATRINA IAN ESTEBAN
+=============================
+Industrial Engineer | Data Analyst | Process Automation Enthusiast
+
+📞 +63 912 345 6789  |  ✉️ katrina.esteban@example.com
+📍 Manila, Philippines
+
+PROFESSIONAL SUMMARY
+Detail-oriented Industrial Engineer with 3+ years of experience in process improvement,
+data analytics, and workflow automation. Skilled in translating business needs into data-driven
+solutions, reducing operational costs by 20% through automation initiatives.
+
+TECHNICAL SKILLS
+• Data Analytics: Python (Pandas, NumPy), SQL, Excel, Power BI, Tableau
+• Automation: UiPath, Python scripting, VBA macros
+• Methodologies: Lean Six Sigma, DMAIC, Kaizen, Process Mining
+• Tools: Jira, Git, MS Project, Visio
+
+CERTIFICATIONS
+• Google Data Analytics Professional Certificate
+• Lean Six Sigma Green Belt (CSSGB)
+• UiPath RPA Developer Foundation
+
+WORK EXPERIENCE
+Process Excellence Analyst | ABC Corp | 2022–Present
+– Led automation of invoice processing, reducing turnaround time by 60%
+– Built Power BI dashboards for real-time KPI monitoring
+
+Junior Industrial Engineer | DEF Manufacturing | 2020–2022
+– Conducted time-motion studies and improved assembly line efficiency by 15%
+– Implemented SQL-based reporting for production metrics
+
+EDUCATION
+Bachelor of Science in Industrial Engineering
+University of Santo Tomas, Manila | 2016–2020 | Cum Laude
+
+PROJECTS
+• Sales Dashboard (Power BI): Interactive dashboard for executive insights.
+• Invoice Automation Bot: Python script extracting data from PDFs.
+• Customer Churn Analysis: Predictive model with 85% accuracy.
+
+— References available upon request —`;
+      
+      const sampleResumeBlob = new Blob([resumeContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(sampleResumeBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Katrina_Ian_Esteban_Resume.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+  
+  // Active nav highlight based on current page
+  const currentPath = window.location.pathname;
+  const homeLink = document.getElementById('nav-home');
+  const certLink = document.getElementById('nav-certs');
+  if (homeLink && certLink) {
+    if (currentPath.includes('certificates.html')) {
+      homeLink.classList.remove('active');
+      certLink.classList.add('active');
+    } else {
+      homeLink.classList.add('active');
+      certLink.classList.remove('active');
+    }
+  }
+</script>
+</body>
+</html>
